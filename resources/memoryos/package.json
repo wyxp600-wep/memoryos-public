@@ -1,0 +1,44 @@
+{
+  "name": "memoryos",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MemoryOS v0.1 shared memory (SQLite + FTS5) MCP server。★ 构建口径（T9 澄清）：本包 **dist/ 即源码**（手工维护，无 src/、无 tsconfig），不存在编译步骤；历史 `build: tsc` 已删除，请勿恢复。改动 dist/*.js 后直接跑 `npm test`。",
+  "scripts": {
+    "test": "node dist/smoke-all.js",
+    "test:exec": "node dist/smoke-exec.js",
+    "test:mcp": "node dist/smoke-mcp.js",
+    "test:t12": "node dist/smoke-t12.js",
+    "test:macp": "node dist/smoke-macp.js",
+    "test:p26": "node dist/smoke-p26-lifecycle.js",
+    "snapshot": "node dist/snapshot-routes.js",
+    "snapshot:check": "node dist/snapshot-routes.js --check",
+    "audit": "node dist/audit-probe.js",
+    "ui:walk": "node outputs/agent-ui-walk.mjs",
+    "ui:walk:settings": "node outputs/settings-ui-walk.mjs",
+    "ui:walk:a11y": "node outputs/a11y-ui-walk.mjs",
+    "lint:sql": "node dist/lint-sql-arity.js --self-test && node dist/lint-sql-arity.js",
+    "lint:silent": "node dist/lint-silent-catch.js --self-test && node dist/lint-silent-catch.js",
+    "lint": "node dist/lint-syntax.js",
+    "start": "node dist/server.js",
+    "obsidian:import": "node dist/obsidian-sync.js import",
+    "obsidian:export": "node dist/obsidian-sync.js export",
+    "obsidian:status": "node dist/obsidian-sync.js status",
+    "obsidian:vaults": "node dist/obsidian-sync.js list-vaults",
+    "skills:status": "node dist/skill-sync.js status",
+    "skills:sync": "node dist/skill-sync.js sync",
+    "skills:dry": "node dist/skill-sync.js sync --dry-run",
+    "skills:adopt": "node dist/skill-sync.js adopt"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2",
+    "fastify": "^5.12.3",
+    "fastmcp": "^3.2.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

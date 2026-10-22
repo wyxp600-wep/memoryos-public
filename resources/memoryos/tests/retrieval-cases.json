@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-13T09:04:29.431Z",
+    "sourceDb": "C:\\Users\\WYX\\AppData\\Roaming\\MemoryOS\\data\\memory.db",
+    "sourceBytes": 151617536,
+    "active": 1664,
+    "withVector": 1633,
+    "note": "课题=检索模块系统性优化；fragment=片段线索（偏词法），paraphrase=转述式（偏语义），noise=库里无答案，cold=归档区冷层"
+  },
+  "cases": [
+    {
+      "id": "para-01",
+      "scenario": "paraphrase",
+      "project": "memoryos",
+      "query": "旧记忆不想清理但又怕以后搜不到，最后定了什么办法",
+      "expectIds": [
+        4866,
+        4867,
+        4865
+      ]
+    },
+    {
+      "id": "para-02",
+      "scenario": "paraphrase",
+      "project": "memoryos",
+      "query": "记忆库越用越笨的体检数据是真的还是编的",
+      "expectIds": [
+        4859
+      ]
+    },
+    {
+      "id": "para-03",
+      "scenario": "paraphrase",
+      "project": "memoryos",
+      "query": "零命中的僵尸记忆都集中在什么时间写入的",
+      "expectIds": [
+        4861
+      ]
+    },
+    {
+      "id": "para-04",
+      "scenario": "paraphrase",
+      "project": "memoryos",
+      "query": "差异融合落库为什么必须写在数据层内部而不能外挂",
+      "expectIds": [
+        4835,
+        4828
+      ]
+    },
+    {
+      "id": "para-05",
+      "scenario": "paraphrase",
+      "project": "电脑优化",
+      "query": "Colorfire 这台笔记本空闲时 CPU 占用到底多少",
+      "expectIds": [
+        4787
+      ]
+    },
+    {
+      "id": "para-06",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "写得多搜得少这种结构性失衡会造成什么后果",
+      "expectIds": [
+        4862
+      ]
+    },
+    {
+      "id": "para-07",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "索引没命中不等于没有记忆，该怎么兜底",
+      "expectIds": [
+        3819
+      ]
+    },
+    {
+      "id": "para-08",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "记忆注入想贴合当前任务主题要传哪个参数",
+      "expectIds": [
+        3796
+      ]
+    },
+    {
+      "id": "para-09",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "为什么说检索命中率低的根子在调用侧",
+      "expectIds": [
+        3817
+      ]
+    },
+    {
+      "id": "para-10",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "任务派发的 generation 该怎么递增才不会失效",
+      "expectIds": [
+        4563
+      ]
+    },
+    {
+      "id": "para-11",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "SQLite 批量写记忆怎么把几十秒压到毫秒级",
+      "expectIds": [
+        4068
+      ]
+    },
+    {
+      "id": "para-12",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "工具调用前不许用冒号这条规矩是谁定的",
+      "expectIds": [
+        3316
+      ]
+    },
+    {
+      "id": "para-13",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "Dispatch 句柄为什么要保持纯 hex 形态",
+      "expectIds": [
+        4511
+      ]
+    },
+    {
+      "id": "para-14",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "记忆编辑保存时前端必须携带哪个参数",
+      "expectIds": [
+        4150
+      ]
+    },
+    {
+      "id": "para-15",
+      "scenario": "paraphrase",
+      "project": "global",
+      "query": "前端搜索多词匹配要怎么拆词才不丢结果",
+      "expectIds": [
+        3429
+      ]
+    },
+    {
+      "id": "noise-01",
+      "scenario": "noise",
+      "expectIds": [],
+      "project": "global",
+      "query": "怎么用 Rust 写一个裸机引导程序"
+    },
+    {
+      "id": "noise-02",
+      "scenario": "noise",
+      "expectIds": [],
+      "project": "global",
+      "query": "明天上海天气怎么样，适合出门吗"
+    },
+    {
+      "id": "noise-03",
+      "scenario": "noise",
+      "expectIds": [],
+      "project": "global",
+      "query": "红烧肉的正宗做法需要炖多久"
+    },
+    {
+      "id": "noise-04",
+      "scenario": "noise",
+      "expectIds": [],
+      "project": "memoryos",
+      "query": "Kubernetes 的 operator 模式怎么自定义资源"
+    },
+    {
+      "id": "noise-05",
+      "scenario": "noise",
+      "expectIds": [],
+      "project": "global",
+      "query": "帮我写一首关于春天的七言绝句"
+    },
+    {
+      "id": "cold-01",
+      "scenario": "cold",
+      "expectIds": [],
+      "project": "memoryos",
+      "query": "旧记忆不得清理 后续某一个任务可能会用到 归档区可搜",
+      "expectArchived": [
+        4865
+      ]
+    },
+    {
+      "id": "cold-02",
+      "scenario": "cold",
+      "expectIds": [],
+      "project": "memoryos",
+      "query": "foldInto 差异融合落库 复用 updateMemory",
+      "expectArchived": [
+        4828
+      ]
+    },
+    {
+      "id": "cold-03",
+      "scenario": "cold",
+      "expectIds": [],
+      "project": "电脑优化",
+      "query": "Colorfire MEOW R16 发热根因 空闲态 CPU 7%",
+      "expectArchived": [
+        4787
+      ]
+    },
+    {
+      "id": "frag-01",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "报错页会伪装成'加载完成'状态，这是导致首次重试未生效的关键坑点",
+      "expectIds": [
+        4792,
+        4799,
+        4807
+      ]
+    },
+    {
+      "id": "frag-02",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "- **网络**：google 被墙 → 搜索用 **bing.com**",
+      "expectIds": [
+        4245
+      ]
+    },
+    {
+      "id": "frag-03",
+      "scenario": "fragment",
+      "project": "memoryos",
+      "query": "[decision] 2026-09-25 跨 agent 记忆不同步的结构性根因：双库分裂，已修（提交 6602e49 + 机器配置）",
+      "expectIds": [
+        4425
+      ]
+    },
+    {
+      "id": "frag-04",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "触发词：\"delegate to subagent\"、\"use cavecrew\"、\"spawn inves\"",
+      "expectIds": [
+        3317
+      ]
+    },
+    {
+      "id": "frag-05",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "Registry更新时，session model会自动fallback到新的provider（如GLM-5.3 → GLM-5.3-start-plan），无需手动切换",
+      "expectIds": [
+        547
+      ]
+    },
+    {
+      "id": "frag-06",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "报错页会伪装成'加载完成'状态，这是导致首次重试未生效的关键坑点",
+      "expectIds": [
+        4792,
+        4799,
+        4807
+      ]
+    },
+    {
+      "id": "frag-07",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "bge-m3是本地部署embedding领域性价比极高的通用多语言模型",
+      "expectIds": [
+        4051,
+        4062
+      ]
+    },
+    {
+      "id": "frag-08",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "免安装版路径为C:\\Users\\WYX\\Desktop\\aiagent记忆与规则\\desktop-app\\dist2\\win-unpacked\\MemoryOS.exe",
+      "expectIds": [
+        3864
+      ]
+    },
+    {
+      "id": "frag-09",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "测试愿意给真实大规模数据（192 万字小说压测）",
+      "expectIds": [
+        4785
+      ]
+    },
+    {
+      "id": "frag-10",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "- **全项目扫描（2026-09-09 修正）**：必须扫描所有项目（`glob('**/*.jsonl')`），不能只看当前工作区",
+      "expectIds": [
+        3677
+      ]
+    },
+    {
+      "id": "frag-11",
+      "scenario": "fragment",
+      "project": "memoryos",
+      "query": "【P3 CDP 驾驶执行器落地+已提交（2026-10-04，commit f0c0cec）——节点画布四阶段全部完成】",
+      "expectIds": [
+        4598
+      ]
+    },
+    {
+      "id": "frag-12",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "验证了4个文件均为UTF-8无BOM编码",
+      "expectIds": [
+        3857
+      ]
+    },
+    {
+      "id": "frag-13",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "caveman-compress压缩策略：将CLAUDE.md/todos/偏好设置等自然语言记忆文件压缩为caveman格式以节省token，保留所有技术内容、代码、URL和结构",
+      "expectIds": [
+        3303
+      ]
+    },
+    {
+      "id": "frag-14",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "- **已落地 artifacts**：`agents.md`（唯一真相源）、`constraints.yaml`（机器可读契约）、`validate.py`（零依赖离线校验器）",
+      "expectIds": [
+        3670
+      ]
+    },
+    {
+      "id": "frag-15",
+      "scenario": "fragment",
+      "project": "memoryos",
+      "query": "【节点画布真实浏览器全流程测试通过（2026-10-04）】",
+      "expectIds": [
+        4591
+      ]
+    },
+    {
+      "id": "frag-16",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "- **安全基线实施要求**：令牌必须使用 Electron safeStorage 存储于系统钥匙串，禁止明文落盘",
+      "expectIds": [
+        4037
+      ]
+    },
+    {
+      "id": "frag-17",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "12:55前后配置被修改过，更换了新密钥和服务器地址",
+      "expectIds": [
+        4757,
+        4771
+      ]
+    },
+    {
+      "id": "frag-18",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "项目根目录为aiagent记忆与规则，包含源码、发行层与文档",
+      "expectIds": [
+        4029,
+        4030
+      ]
+    },
+    {
+      "id": "frag-19",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "- **栈**：前端 Vue3 + Element Plus + Vite + Vuex4 + Vue Router4",
+      "expectIds": [
+        3656
+      ]
+    },
+    {
+      "id": "frag-20",
+      "scenario": "fragment",
+      "project": "global",
+      "query": "MemoryOS 记忆修订的静默失败坑（工具使用经验）",
+      "expectIds": [
+        4577
+      ]
+    }
+  ]
+}

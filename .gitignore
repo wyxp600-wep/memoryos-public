@@ -1,0 +1,132 @@
+# ============================================================
+# MemoryOS 版本控制基线  (task T10 / plan-20260914-fullopt)
+# 原则：只跟踪「源码 + 文档 + 计划」；运行时、模型、数据库、备份一律忽略。
+# 回滚策略（重要）：
+#   - 代码回滚   → git 提交 / tag（自本基线起，禁止再用 *.bak-notes-* 命名）
+#   - 数据库回滚 → daemon 的 VACUUM INTO 自包含快照（严禁复制 .db 文件）
+# ============================================================
+
+# ---- 1. Electron 运行时与打包产物（约 320MB，非源码）----
+MemoryOS.exe
+*.exe
+*.dll
+*.pak
+*.bin
+*.dat
+LICENSES.chromium.html
+vk_swiftshader_icd.json
+locales/
+
+# ---- 2. 一次性归档区（保留在磁盘，不进版本库）----
+archive/
+
+# ---- 2b. 隔离 worktree 检出区（workbench 域并行编排；元数据在 .git/worktrees/，此处只忽略检出内容）----
+.worktrees/
+
+# ---- 3. 历史包袱与整目录备份 ----
+_old/
+_backup_memoryos-*/
+_p1-backup-*/
+**/backup-dist-*/
+**/dist.bak-*/
+
+# ---- 4. 依赖与运行时资源 ----
+node_modules/
+resources/memoryos/models/
+resources/memoryos/runtime/
+# 本机 Python 运行时（pythoncore 发行版，2330 文件 / 136MB，非源码；2026-10-14 仓库卫生）
+Python/
+
+# ---- 5. 数据库与凭据（WAL 快照 / 令牌绝不入库）----
+*.db
+*.db.*
+*.db-wal
+*.db-shm
+resources/memoryos/data/backup/
+resources/memoryos/data/logs/
+resources/memoryos/data/*.log
+resources/memoryos/data/_ls.txt
+resources/memoryos/data/token
+resources/memoryos/data/config.json
+
+# ---- 6. 旧备份命名（已由 git 取代）----
+*.bak
+*.bak-*
+*.bak2
+*-bak
+*.other-*
+*-bak-chk
+
+# ---- 7. 临时脚本与日志 ----
+tmp-*
+_tmp*
+_p0_*
+_db_patch*
+*.log
+
+# ---- 8. 工具本地状态 ----
+.workbuddy/
+.workbuddy-ai/
+.mimosa/
+.v2c/
+.zcode/
+.zcodeignore
+.dsh/
+.zwork/
+
+# 共享规则入口：由 sync-rules.js 在 MEMORYOS-SYNC-RULES-START/END 标记间幂等生成，
+# 标记外实测全为空行（无手写内容）⇒ 属本机产物，不入库；手写的规程请写进 CLAIM.md / docs
+AGENTS.md
+
+# ---- 热更新签名私钥（只存发布机，绝不入库；公钥已内置 services/updater.js）----
+security/update-signing/
+android/MemoryOSMobile/release.keystore
+
+# ---- 10. 构建/部署产物与一次性工作产物（2026-10-11 上传 GitHub 时收口）----
+# 原则：含 >100MB 单文件（GitHub 硬限）或纯产物者一律排除；源码仍跟踪。
+# 手机版（未完成版本，2026-10-11 用户指示撤出仓库；文件保留在磁盘）
+android/
+# 托盘原生模块：*源码已纳管*（2026-10-16 托盘根治 T4——改为独立 WinForms 宿主，
+# window/tray.js 运行时读取 tray-native.cs 编译出 bridge/MemoryOS-Tray.exe）；
+# 只忽略本地编译产物，源码必须入库，否则打包后宿主编译失败只能回退低配通道。
+window/tray-native/*.exe
+window/tray-native/*.pdb
+# 诊断快照：含整个 Electron 运行时（et/runtime/electron.exe 235MB）
+outputs/diag-*/
+outputs/db-backup-*/
+# 一次性工作产物（UI 切片脚本、压缩批次、验收快照等）
+outputs/condense-*
+outputs/conflict-plan-*
+outputs/daily/
+outputs/fold-impl/
+outputs/p2-cli-test-ws/
+outputs/p4-acceptance/
+outputs/ui-cleanup-A/
+outputs/ui-cleanup-B/
+outputs/ui-quality-polish-*/
+# 内核侧一次性产物与测试截图
+resources/memoryos/outputs/card-manual-test/
+resources/memoryos/outputs/_diag-archive/
+resources/memoryos/outputs/daily/
+# 与项目无关的临时文件
+monkey-unicycle-juggle.html
+.vscode/
+
+# 公开源码快照边界
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite*
+*.local.*
+outputs/
+resources/memoryos/outputs/
+resources/memoryos/data/
+resources/memoryos/plans/
+resources/app.asar
+window/tray-native/
+android/
+release-checks/
+

@@ -1,0 +1,13 @@
+# pre-commit 钩子必须保持 LF：Windows 因 autocrlf 会转 CRLF，
+# 而 bash 逐行执行 hook 遇到 CR 尾随会崩溃。强制该路径统一 LF。
+.githooks/** text eol=lf
+# 压缩后的第三方静态资源必须按字节检出：core.autocrlf=true 会把 LF 转 CRLF，
+# 使 worktree/新克隆的响应体与主树差几十字节 → snapshot:check 报假硬差异（实测 echarts 1034102→1034147）。
+resources/memoryos/memoryos-dashboard-redesign/echarts.min.js -text
+
+# UI 规范基准需固定文本换行，避免 Windows 检出改变体积断言。
+resources/memoryos/memoryos-dashboard-redesign/index.html text eol=lf
+resources/memoryos/memoryos-dashboard-redesign/app.js text eol=lf
+resources/memoryos/memoryos-dashboard-redesign/verification/** text eol=lf
+resources/memoryos/memoryos-dashboard-redesign/verification/baseline/*.png binary
+resources/memoryos/memoryos-dashboard-redesign/fonts/*.woff2 binary

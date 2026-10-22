@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>MemoryOS 首次配置</title>
+<style>
+  :root { --accent: #00b8d4; --bg: #0b1020; --card: #131a2e; --line: #232d4a; --text: #dbe4f5; --muted: #8a97b8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: radial-gradient(1200px 600px at 70% -10%, rgba(0,184,212,.12), transparent 60%), var(--bg);
+    color: var(--text); height: 100vh; display: flex; align-items: center; justify-content: center;
+  }
+  .card { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px 30px; }
+  h1 { font-size: 20px; color: #fff; }
+  .logo { color: var(--accent); font-weight: 700; letter-spacing: .5px; }
+  p.sub { color: var(--muted); font-size: 13px; margin: 8px 0 22px; line-height: 1.6; }
+  label { display: block; font-size: 13px; margin: 14px 0 6px; }
+  input {
+    width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line);
+    background: #0d1424; color: var(--text); font-size: 13px; outline: none;
+  }
+  input:focus { border-color: var(--accent); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+  .row { display: flex; gap: 12px; margin-top: 26px; }
+  button {
+    flex: 1; padding: 10px 0; border-radius: 8px; font-size: 14px; cursor: pointer; border: 1px solid var(--line);
+    background: transparent; color: var(--text);
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #041018; font-weight: 600; }
+  button:hover { filter: brightness(1.1); }
+  .optional { display: flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 13px; cursor: pointer; user-select: none; }
+  .optional input { width: auto; }
+  details { margin-top: 16px; font-size: 12px; color: var(--muted); }
+  summary { cursor: pointer; }
+  details div { margin-top: 6px; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1><span class="logo">MemoryOS</span> 首次配置</h1>
+    <p class="sub">记忆检索引擎已内置（本地 BGE-M3，离线可用）。<br />仅「记忆提炼」需可选配置一个 LLM 服务。</p>
+    <label for="llmUrl">LLM 服务地址（OpenAI 兼容 /v1/chat/completions）</label>
+    <input id="llmUrl" placeholder="http://127.0.0.1:18900/v1/chat/completions" />
+    <div class="hint">留空 = 禁用自动提炼，仅做检索与治理（可随时在设置中开启）。</div>
+    <label for="llmModel">模型名</label>
+    <input id="llmModel" placeholder="gpt-4o-mini / agnes-2.5-flash" />
+    <label for="llmKey">API Key（可选，服务无需鉴权时留空）</label>
+    <input id="llmKey" type="password" placeholder="sk-…" />
+    <div class="row">
+      <button id="skip">跳过（使用默认）</button>
+      <button id="save" class="primary">开始使用</button>
+    </div>
+    <details>
+      <summary>这两项是什么？</summary>
+      <div>· 检索：把问题转成向量找相似记忆 —— 用内置本地模型，无需任何配置。<br />· 提炼：把对话素材自动浓缩成结构化记忆 —— 需要连接一个大模型服务。团队可共用部署一个，或每人填自己的。</div>
+    </details>
+  </div>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    function collect() {
+      const llmUrl = $("llmUrl").value.trim();
+      return {
+        llmUrl: llmUrl || "",
+        llmModel: llmUrl ? $("llmModel").value.trim() || "gpt-4o-mini" : "",
+        llmKey: $("llmKey").value.trim() || "",
+      };
+    }
+    $("save").onclick = () => window.memoryos.saveConfig(collect());
+    $("skip").onclick = () => window.memoryos.saveConfig({});
+  </script>
+</body>
+</html>
